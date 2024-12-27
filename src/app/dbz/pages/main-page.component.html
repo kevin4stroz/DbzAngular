@@ -1,0 +1,15 @@
+<hr>
+<h1>DBZ-MAINPAGE-COMPONENT</h1>
+<hr>
+
+<div class="row">
+
+  <div class="col">
+    <app-dbz-list [personajesHijo]="personajes" (ExternalonDeleteId)="metodoDeletePersonaje($event)"></app-dbz-list>
+  </div>
+
+  <div class="col">
+    <app-dbz-add-character (NombreAfueraPersonaje)="metodoAddpersonaje($event)"></app-dbz-add-character>
+  </div>
+
+</div>

@@ -1,0 +1,32 @@
+<h4>Listado personajes</h4>
+<ul class="list-group">
+  <li
+    *ngFor="
+      let personaje of personajesHijo;
+      let indice = index;
+      let isFirst = first;
+      let isLast = last;
+      let isEven = even;
+      let isOdd = odd"
+    class="list-group-item d-flex justify-content-between align-items-center"
+    [ngClass]="{
+      'list-group-item-dark': isLast,
+      'list-group-item-primary': isEven,
+      'list-group-item-success': isOdd
+    }">
+    <div>
+      <span class="text-primary">{{indice}}.</span>
+      <span> Nombre :</span> {{ personaje.name }} -
+      <span> Power :</span> {{ personaje.power }}
+
+      <br>
+      <span>primero : {{ indice == 0 }} - {{isFirst}}</span><br>
+      <span>ultimo : {{ indice == personajesHijo.length-1 }} - {{isLast}}</span><br>
+      <span>par : {{isEven}}</span><br>
+      <span>impar : {{isOdd}}</span><br>
+    </div>
+
+
+    <button (click)="onDeletePersonaje(indice)" class="btn btn-danger">x</button>
+  </li>
+</ul>

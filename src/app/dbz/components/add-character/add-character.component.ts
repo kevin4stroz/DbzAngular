@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IPersonaje } from '../../interfaces/IPersonaje';
+import { v4 } from 'uuid';
 
 @Component({
   selector: 'app-dbz-add-character',
@@ -13,6 +14,7 @@ export class AddCharacterComponent {
   public onNewPersonaje: EventEmitter<IPersonaje> = new EventEmitter();
 
   public personajeForm: IPersonaje = {
+    id : v4(),
     name: '',
     power: 0
   }
@@ -28,7 +30,7 @@ export class AddCharacterComponent {
     this.onNewPersonaje.emit(this.personajeForm);
 
     // AQUI CREAMOS UNA NUEVA REFERENCIA POR ESO SE ARREGLO
-    this.personajeForm = { name : "", power : 0};
+    this.personajeForm = { id : v4(), name : "", power : 0};
   }
 
 }

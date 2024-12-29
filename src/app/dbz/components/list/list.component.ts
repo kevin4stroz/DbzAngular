@@ -9,13 +9,13 @@ import { IPersonaje } from '../../interfaces/IPersonaje';
 export class ListComponent {
 
   @Output("ExternalonDeleteId")
-  public onDeleteId: EventEmitter<number> = new EventEmitter();
+  public onDeleteId: EventEmitter<string> = new EventEmitter();
 
   @Input()
   public personajesHijo: IPersonaje[] = [];
 
-  onDeletePersonaje(index: number): void {
-    console.log("Indice: ", index);
-    this.onDeleteId.emit(index);
+  onDeletePersonaje(id: string): void {
+    console.log("Id a borrar : ", id);
+    this.onDeleteId.emit(id);
   }
 }

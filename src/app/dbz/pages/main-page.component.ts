@@ -1,34 +1,32 @@
 import { Component } from '@angular/core';
 import { IPersonaje } from '../interfaces/IPersonaje';
+import { DbzService } from '../services/dbz.service';
 
 @Component({
   selector: 'dbz-main-page',
   templateUrl: 'main-page.component.html'
 })
 export class MainPageComponent {
-  public personajes: IPersonaje[] = [
-    {
-      name : "Krilin", power : 1000
-    },
-    {
-      name : "Goku", power : 10000
-    },
-    {
-      name : "Goku", power : 10000
-    }
-  ];
 
-  // creamos funcion que procesara el evento
-  public metodoAddpersonaje(personaje: IPersonaje){
-    console.log("Main Page :", personaje);
-    this.personajes.push(personaje);
+  // injeccion de dependencias
+  constructor(private dbzService : DbzService) {
+
   }
 
-  public metodoDeletePersonaje(id: number){
-    console.log("Main Page :", id );
-    this.personajes = this.personajes.filter( (personaje, index) => {
-      return index != id;
-    })
+  // creacion de getter
+  get personajes() : IPersonaje[] {
+    // retornamos una copia mas no el valor por referencia
+    return [...this.dbzService.personajes];
+  }
+
+  // creacion de un nuevo metodo para invocar el servicio de borrado
+  public OnDeletePersonaje(id: string) : void {
+    this.dbzService.metodoDeletePersonaje(id);
+  }
+
+  // creacion de un nuevo metodo para agregar un personaje
+  public OnAddPersonaje(personaje: IPersonaje) : void {
+    this.dbzService.metodoAddpersonaje(personaje);
   }
 
 }
